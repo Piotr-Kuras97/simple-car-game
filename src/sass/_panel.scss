@@ -5,7 +5,8 @@
     font-size: 30px;
     color: white;
     padding: 10px 30px;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .8);
+    border: 2px solid white;
 
     .points{
         font-weight: bold;
@@ -14,12 +15,13 @@
 
 .panel{
     position: absolute;
-    top: 10%;
+    top: 15%;
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(0, 0, 0, .8);
     padding: 15px 25px;
     border-radius: 15px;
+    border: 2px solid white;
     color: white;
     transition: 1s;
     &__title{
@@ -34,21 +36,36 @@
         margin-top: 5px;
     }
 
+
     &__play{
+        position: relative;
+        display: block;
+        left: 50%;
+        transform: translateX(-50%);
         margin-top: 10px;
         color: black;
+        font-size: 1.2rem;
         background-color: white;
-        padding: 10px 20px;
-        position: relative;
-        left: 50%;
+        padding: 10px 30px;
         border: 2px solid slateblue;
         border-radius: 10px;
         font-family: 'roboto mono';
-        transform: translateX(-50%);
         transition: .3s;
+        font-weight: bold;
+        cursor: pointer;
 
         &:hover{
             background-color: #ddd;
         }
+    }
+    label{
+        display: inline-block;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+    }
+    select{
+        font-family: 'roboto mono';
+        font-size: 1.1rem;
     }
 }

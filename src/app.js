@@ -27,7 +27,7 @@ class Game{
     }
     
     clearCanvas(){
-        this.ctx.fillStyle = "black"
+        this.ctx.fillStyle = "#333333"
         this.ctx.fillRect(0, 0, this.width, this.height)
 
         this.ctx.strokeStyle = "darkgoldenrod";
@@ -44,7 +44,7 @@ class Game{
         this.canvas.width = this.width
         this.canvas.height = this.height
 
-        this.ctx.fillStyle = "black"
+        this.ctx.fillStyle = "#333333"
         this.ctx.fillRect(0, 0, this.width, this.height)
 
         this.ctx.strokeStyle = "darkgoldenrod";
@@ -163,7 +163,7 @@ class Game{
                 if(this.road.getBoundingClientRect().top > this.car.getBoundingClientRect().top + 25){
                     return
                 } else{
-                    this.posY = this.posY - 15
+                    this.posY = this.posY - 10
                     TweenMax.to(this.car, .05, {y: this.posY})
                 }
 
@@ -173,7 +173,7 @@ class Game{
                 if(this.car.getBoundingClientRect().top + 70 > window.innerHeight){
                     return
                 } else {
-                    this.posY = this.posY + 15
+                    this.posY = this.posY + 10
                     TweenMax.to(this.car, .05, {y: this.posY})     
                 }
             }
@@ -213,7 +213,7 @@ class Game{
 
     stopGame(){
         for(let i = 0; i < this.obstacles.length; i++){
-            if(Math.floor(this.obstacles[i].x) < Math.floor(this.car.getBoundingClientRect().left + 60) && this.posY + this.obstacles[i].size > Math.floor(this.obstacles[i].y)){
+            if(Math.floor(this.obstacles[i].x) < Math.floor(this.car.getBoundingClientRect().left + 70) && this.posY + this.obstacles[i].size > Math.floor(this.obstacles[i].y)){
 
                 if(Math.floor(this.obstacles[i].y) - this.posY + this.obstacles[0].size - 90 < 0 && Math.floor(this.obstacles[i].y) - this.posY + this.obstacles[i].size - 90 > -70){
                     console.log(Math.floor(this.obstacles[0].y) - this.posY + this.obstacles[0].size - 90);
@@ -267,7 +267,9 @@ class Game{
 }
 const play = document.querySelector(".panel__play")
 const panel = document.querySelector(".panel")
+const song = document.querySelector(".song")
 const driveSound = document.querySelector(".drive-sound")
+driveSound.volume = .1
 const crashSound = document.querySelector(".crash-sound")
 const bg = document.querySelector(".bg")
 
@@ -279,6 +281,7 @@ play.addEventListener("click", () => {
     start.run()
     panel.style.opacity = 0
     driveSound.play()
+    song.play()
     crashSound.pause()
     crashSound.currentTime = 0
     bg.style.animationPlayState = "running";
@@ -291,5 +294,40 @@ window.onload = () => {
     bg.generateLines(bg.numbersOfLines())
     bg.drawLines()
 }
+
+
+const volumeOn = document.querySelector(".volume__on")
+const volumeOff = document.querySelector(".volume__off")
+const allSounds = document.querySelectorAll("audio")
+
+volumeOn.addEventListener("click", () => {
+    allSounds.forEach(item => {
+        item.muted = true
+    })
+
+    volumeOn.style.display = "none"
+    volumeOff.style.display = "block"
+})
+
+volumeOff.addEventListener("click", () => {
+    allSounds.forEach(item => {
+        item.muted = false
+    })
+
+    volumeOn.style.display = "block"
+    volumeOff.style.display = "none"
+})
+
+//change car color
+
+const car = document.querySelector(".st1")
+const colorSelect = document.getElementById("color-select");
+
+colorSelect.addEventListener("change", (e) => {
+    const selectedColor = colorSelect.value;
+    car.style.fill = selectedColor
+})
+
+
 
 
