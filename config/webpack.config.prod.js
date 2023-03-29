@@ -12,7 +12,7 @@ module.exports = {
     },
     output: {
         filename: "./js/app-[contenthash:6].js",
-        path: path.resolve(__dirname, '../', 'docs'),
+        path: path.resolve(__dirname, '../', 'build'),
         assetModuleFilename: 'images/[name][ext][query]'
     },
     module: {
